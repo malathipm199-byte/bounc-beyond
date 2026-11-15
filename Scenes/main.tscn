@@ -1,0 +1,773 @@
+[gd_scene format=3 uid="uid://bbmain001"]
+
+[ext_resource type="Script" uid="uid://b3abtrfmxljfn" path="res://Scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://bbplayer001" path="res://Scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://bbcoin001" path="res://Scenes/coin.tscn" id="3_coin"]
+[ext_resource type="Script" uid="uid://bwwn3sgyoq8d1" path="res://Scripts/obstacle.gd" id="4_obstacle"]
+
+[sub_resource type="RectangleShape2D" id="Shape_StartPlat"]
+size = Vector2(360, 40)
+
+[sub_resource type="RectangleShape2D" id="Shape_PlatMed"]
+size = Vector2(240, 32)
+
+[sub_resource type="RectangleShape2D" id="Shape_PlatWide"]
+size = Vector2(380, 36)
+
+[sub_resource type="RectangleShape2D" id="Shape_PlatHigh"]
+size = Vector2(220, 32)
+
+[sub_resource type="RectangleShape2D" id="Shape_EndPlat"]
+size = Vector2(300, 40)
+
+[sub_resource type="RectangleShape2D" id="Shape_FinishPortal"]
+size = Vector2(64, 110)
+
+[sub_resource type="RectangleShape2D" id="Shape_Abyss"]
+size = Vector2(6000, 120)
+
+[sub_resource type="RectangleShape2D" id="Shape_SpikeHazard"]
+size = Vector2(52, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape_BouncePad"]
+size = Vector2(64, 18)
+
+[sub_resource type="RectangleShape2D" id="Shape_MovingBlock"]
+size = Vector2(90, 32)
+
+[sub_resource type="RectangleShape2D" id="Shape_MovingHazard"]
+size = Vector2(60, 60)
+
+[node name="Main" type="Node2D" unique_id=4068424]
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2080405924]
+offset_left = -800.0
+offset_top = -600.0
+offset_right = 4500.0
+offset_bottom = 900.0
+color = Color(0.08, 0.1, 0.16, 1)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=986945925]
+position = Vector2(140, 420)
+
+[node name="Player" parent="." unique_id=1061071431 instance=ExtResource("2_player")]
+position = Vector2(140, 420)
+
+[node name="StartPlatform" type="StaticBody2D" parent="." unique_id=1421421544]
+position = Vector2(220, 500)
+
+[node name="ColorRect" type="ColorRect" parent="StartPlatform" unique_id=353781486]
+offset_left = -180.0
+offset_top = -20.0
+offset_right = 180.0
+offset_bottom = 20.0
+color = Color(0.28, 0.34, 0.46, 1)
+
+[node name="TopTrim" type="ColorRect" parent="StartPlatform/ColorRect" unique_id=195531239]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 6.0
+color = Color(0.22, 0.74, 0.97, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPlatform" unique_id=1629772432]
+shape = SubResource("Shape_StartPlat")
+
+[node name="Platform1" type="StaticBody2D" parent="." unique_id=424103559]
+position = Vector2(560, 460)
+
+[node name="ColorRect" type="ColorRect" parent="Platform1" unique_id=132137182]
+offset_left = -120.0
+offset_top = -16.0
+offset_right = 120.0
+offset_bottom = 16.0
+color = Color(0.28, 0.34, 0.46, 1)
+
+[node name="TopTrim" type="ColorRect" parent="Platform1/ColorRect" unique_id=447485704]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 5.0
+color = Color(0.22, 0.74, 0.97, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1" unique_id=575951346]
+shape = SubResource("Shape_PlatMed")
+
+[node name="Platform2" type="StaticBody2D" parent="." unique_id=2069313489]
+position = Vector2(960, 490)
+
+[node name="ColorRect" type="ColorRect" parent="Platform2" unique_id=393197384]
+offset_left = -190.0
+offset_top = -18.0
+offset_right = 190.0
+offset_bottom = 18.0
+color = Color(0.28, 0.34, 0.46, 1)
+
+[node name="TopTrim" type="ColorRect" parent="Platform2/ColorRect" unique_id=1281332835]
+layout_mode = 0
+offset_right = 380.0
+offset_bottom = 5.0
+color = Color(0.22, 0.74, 0.97, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2" unique_id=103768494]
+shape = SubResource("Shape_PlatWide")
+
+[node name="Platform3_High" type="StaticBody2D" parent="." unique_id=225223713]
+position = Vector2(1420, 310)
+
+[node name="ColorRect" type="ColorRect" parent="Platform3_High" unique_id=1356935875]
+offset_left = -110.0
+offset_top = -16.0
+offset_right = 110.0
+offset_bottom = 16.0
+color = Color(0.28, 0.34, 0.46, 1)
+
+[node name="TopTrim" type="ColorRect" parent="Platform3_High/ColorRect" unique_id=436691094]
+layout_mode = 0
+offset_right = 220.0
+offset_bottom = 5.0
+color = Color(0.65, 0.55, 0.98, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3_High" unique_id=1004474805]
+shape = SubResource("Shape_PlatHigh")
+
+[node name="Platform4" type="StaticBody2D" parent="." unique_id=733372044]
+position = Vector2(2040, 460)
+
+[node name="ColorRect" type="ColorRect" parent="Platform4" unique_id=2139927368]
+offset_left = -190.0
+offset_top = -18.0
+offset_right = 190.0
+offset_bottom = 18.0
+color = Color(0.28, 0.34, 0.46, 1)
+
+[node name="TopTrim" type="ColorRect" parent="Platform4/ColorRect" unique_id=619622181]
+layout_mode = 0
+offset_right = 380.0
+offset_bottom = 5.0
+color = Color(0.22, 0.74, 0.97, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4" unique_id=1405549584]
+shape = SubResource("Shape_PlatWide")
+
+[node name="Platform5" type="StaticBody2D" parent="." unique_id=92356101]
+position = Vector2(2460, 420)
+
+[node name="ColorRect" type="ColorRect" parent="Platform5" unique_id=1024468610]
+offset_left = -120.0
+offset_top = -16.0
+offset_right = 120.0
+offset_bottom = 16.0
+color = Color(0.28, 0.34, 0.46, 1)
+
+[node name="TopTrim" type="ColorRect" parent="Platform5/ColorRect" unique_id=532361175]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 5.0
+color = Color(0.22, 0.74, 0.97, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5" unique_id=1521139018]
+shape = SubResource("Shape_PlatMed")
+
+[node name="EndPlatform" type="StaticBody2D" parent="." unique_id=1311594483]
+position = Vector2(2880, 420)
+
+[node name="ColorRect" type="ColorRect" parent="EndPlatform" unique_id=1109894100]
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 20.0
+color = Color(0.2, 0.45, 0.35, 1)
+
+[node name="TopTrim" type="ColorRect" parent="EndPlatform/ColorRect" unique_id=208082628]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 6.0
+color = Color(0.29, 0.87, 0.5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndPlatform" unique_id=1380081812]
+shape = SubResource("Shape_EndPlat")
+
+[node name="FinishPortal" type="Area2D" parent="." unique_id=400206484]
+position = Vector2(2930, 345)
+
+[node name="OuterGlow" type="ColorRect" parent="FinishPortal" unique_id=1759397603]
+offset_left = -32.0
+offset_top = -55.0
+offset_right = 32.0
+offset_bottom = 55.0
+color = Color(0.13, 0.77, 0.37, 0.35)
+
+[node name="InnerCore" type="ColorRect" parent="FinishPortal" unique_id=1291615513]
+offset_left = -18.0
+offset_top = -42.0
+offset_right = 18.0
+offset_bottom = 42.0
+color = Color(0.29, 0.87, 0.5, 0.85)
+
+[node name="Label" type="Label" parent="FinishPortal" unique_id=1839082244]
+offset_left = -35.0
+offset_top = -82.0
+offset_right = 37.0
+offset_bottom = -59.0
+text = "FINISH"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishPortal" unique_id=1576549838]
+shape = SubResource("Shape_FinishPortal")
+
+[node name="Abyss" type="Area2D" parent="." unique_id=339880439]
+position = Vector2(1600, 740)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Abyss" unique_id=1397416794]
+shape = SubResource("Shape_Abyss")
+
+[node name="World" type="Node2D" parent="." unique_id=1515709234]
+
+[node name="Coins" type="Node2D" parent="World" unique_id=1835390090]
+
+[node name="Coin1" parent="World/Coins" unique_id=930875890 instance=ExtResource("3_coin")]
+position = Vector2(340, 430)
+
+[node name="Coin2" parent="World/Coins" unique_id=1987268843 instance=ExtResource("3_coin")]
+position = Vector2(560, 405)
+
+[node name="Coin3" parent="World/Coins" unique_id=1283735103 instance=ExtResource("3_coin")]
+position = Vector2(830, 435)
+
+[node name="Coin4" parent="World/Coins" unique_id=2128934236 instance=ExtResource("3_coin")]
+position = Vector2(960, 390)
+
+[node name="Coin5" parent="World/Coins" unique_id=795624612 instance=ExtResource("3_coin")]
+position = Vector2(1180, 340)
+
+[node name="Coin6" parent="World/Coins" unique_id=1013221198 instance=ExtResource("3_coin")]
+position = Vector2(1420, 255)
+
+[node name="Coin7" parent="World/Coins" unique_id=2045506662 instance=ExtResource("3_coin")]
+position = Vector2(1700, 350)
+
+[node name="Coin8" parent="World/Coins" unique_id=989710143 instance=ExtResource("3_coin")]
+position = Vector2(1930, 405)
+
+[node name="Coin9" parent="World/Coins" unique_id=429053075 instance=ExtResource("3_coin")]
+position = Vector2(2150, 405)
+
+[node name="Coin10" parent="World/Coins" unique_id=1608413549 instance=ExtResource("3_coin")]
+position = Vector2(2460, 360)
+
+[node name="Obstacles" type="Node2D" parent="World" unique_id=890049796]
+
+[node name="Spikes_1" type="Area2D" parent="World/Obstacles" unique_id=1229572922 groups=["hazard"]]
+position = Vector2(960, 460)
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Obstacles/Spikes_1" unique_id=1121008206]
+color = Color(0.96, 0.25, 0.37, 1)
+polygon = PackedVector2Array(-28, 12, -18, -14, -8, 12, 0, -14, 8, 12, 18, -14, 28, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/Spikes_1" unique_id=533622058]
+shape = SubResource("Shape_SpikeHazard")
+
+[node name="BouncePad_1" type="Area2D" parent="World/Obstacles" unique_id=1541876298 groups=["bounce_pad"]]
+position = Vector2(1110, 463)
+
+[node name="ColorRect" type="ColorRect" parent="World/Obstacles/BouncePad_1" unique_id=1370884189]
+offset_left = -32.0
+offset_top = -9.0
+offset_right = 32.0
+offset_bottom = 9.0
+color = Color(0.98, 0.45, 0.09, 1)
+
+[node name="TopStripe" type="ColorRect" parent="World/Obstacles/BouncePad_1/ColorRect" unique_id=1006759214]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 4.0
+color = Color(0.99, 0.88, 0.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/BouncePad_1" unique_id=608584182]
+shape = SubResource("Shape_BouncePad")
+
+[node name="MovingPlatform_1" type="AnimatableBody2D" parent="World/Obstacles" unique_id=19073123]
+position = Vector2(1610, 410)
+script = ExtResource("4_obstacle")
+move_offset = Vector2(160, 0)
+move_speed = 2.2
+is_moving_block = true
+
+[node name="ColorRect" type="ColorRect" parent="World/Obstacles/MovingPlatform_1" unique_id=2080413386]
+offset_left = -45.0
+offset_top = -16.0
+offset_right = 45.0
+offset_bottom = 16.0
+color = Color(0.55, 0.36, 0.96, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/MovingPlatform_1" unique_id=779885758]
+shape = SubResource("Shape_MovingBlock")
+
+[node name="Spikes_2" type="Area2D" parent="World/Obstacles" unique_id=78489408 groups=["hazard"]]
+position = Vector2(2040, 430)
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Obstacles/Spikes_2" unique_id=935660256]
+color = Color(0.96, 0.25, 0.37, 1)
+polygon = PackedVector2Array(-28, 12, -18, -14, -8, 12, 0, -14, 8, 12, 18, -14, 28, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/Spikes_2" unique_id=998311433]
+shape = SubResource("Shape_SpikeHazard")
+
+[node name="MovingHazardBlock" type="Node2D" parent="World/Obstacles" unique_id=1976980627]
+position = Vector2(2460, 290)
+script = ExtResource("4_obstacle")
+move_offset = Vector2(0, 95)
+move_speed = 3.0
+is_moving_block = true
+
+[node name="HazardArea" type="Area2D" parent="World/Obstacles/MovingHazardBlock" unique_id=805506235 groups=["hazard"]]
+
+[node name="ColorRect" type="ColorRect" parent="World/Obstacles/MovingHazardBlock/HazardArea" unique_id=1591107223]
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+color = Color(0.88, 0.11, 0.28, 1)
+
+[node name="InnerX" type="ColorRect" parent="World/Obstacles/MovingHazardBlock/HazardArea/ColorRect" unique_id=852385015]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 42.0
+offset_bottom = 42.0
+color = Color(1, 0.89, 0.9, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/MovingHazardBlock/HazardArea" unique_id=2113563796]
+shape = SubResource("Shape_MovingHazard")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1234356551]
+
+[node name="HUD" type="PanelContainer" parent="UI" unique_id=2048703145]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="Margin" type="MarginContainer" parent="UI/HUD" unique_id=1745562627]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+
+[node name="HBox" type="HBoxContainer" parent="UI/HUD/Margin" unique_id=407569990]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="ScoreLabel" type="Label" parent="UI/HUD/Margin/HBox" unique_id=62961219]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "SCORE: 0"
+
+[node name="CoinsLabel" type="Label" parent="UI/HUD/Margin/HBox" unique_id=1571546628]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "COINS: 0"
+
+[node name="BestLabel" type="Label" parent="UI/HUD/Margin/HBox" unique_id=695696071]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "BEST: 0"
+
+[node name="PauseButton" type="Button" parent="UI/HUD/Margin/HBox" unique_id=1523965715]
+layout_mode = 2
+text = "  PAUSE (P)  "
+
+[node name="MenuScreen" type="Control" parent="UI" unique_id=1412041493]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UI/MenuScreen" unique_id=1753709790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.12, 0.88)
+
+[node name="Center" type="CenterContainer" parent="UI/MenuScreen" unique_id=460986186]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/MenuScreen/Center" unique_id=390550243]
+custom_minimum_size = Vector2(460, 360)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/MenuScreen/Center/Panel" unique_id=521177841]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=200879851]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "BOUNCE BEYOND"
+horizontal_alignment = 1
+
+[node name="Tagline" type="Label" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=1073251714]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Fall. Learn. Jump. Rise. Win."
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=659497879]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Ready for an adventure?"
+horizontal_alignment = 1
+
+[node name="BestScoreLabel" type="Label" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=2118949909]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "SESSION BEST SCORE: 0"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=1578450416]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "START GAME"
+
+[node name="InstructionsButton" type="Button" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=1149913943]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Instructions"
+
+[node name="QuitButton" type="Button" parent="UI/MenuScreen/Center/Panel/VBox" unique_id=1002762589]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="InstructionsPopup" type="PanelContainer" parent="UI/MenuScreen" unique_id=614542184]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/MenuScreen/InstructionsPopup" unique_id=364251206]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Header" type="Label" parent="UI/MenuScreen/InstructionsPopup/VBox" unique_id=471975517]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="UI/MenuScreen/InstructionsPopup/VBox" unique_id=590340447]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "• Move: A / D or Left / Right Arrow Keys
+• Jump: Space, W, or Up Arrow
+• Pause: P or Esc
+• Orange Bounce Pads launch you high!
+• Avoid Red Spikes, Moving Hazard Blocks, and the Abyss.
+• Coins = +10 pts | Obstacle Sections = +20 pts | Finish = +100 pts"
+horizontal_alignment = 1
+
+[node name="CloseInstrButton" type="Button" parent="UI/MenuScreen/InstructionsPopup/VBox" unique_id=181492003]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Got It!"
+
+[node name="ConfirmScreen" type="Control" parent="UI" unique_id=1885360473]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UI/ConfirmScreen" unique_id=1145829388]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.12, 0.88)
+
+[node name="Center" type="CenterContainer" parent="UI/ConfirmScreen" unique_id=98757048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/ConfirmScreen/Center" unique_id=658313763]
+custom_minimum_size = Vector2(440, 260)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/ConfirmScreen/Center/Panel" unique_id=1759319952]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Heading" type="Label" parent="UI/ConfirmScreen/Center/Panel/VBox" unique_id=9341198]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Are you ready to play?"
+horizontal_alignment = 1
+
+[node name="Subtext" type="Label" parent="UI/ConfirmScreen/Center/Panel/VBox" unique_id=345025695]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Your adventure is about to begin!"
+horizontal_alignment = 1
+
+[node name="YesPlayButton" type="Button" parent="UI/ConfirmScreen/Center/Panel/VBox" unique_id=1840801026]
+custom_minimum_size = Vector2(240, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "YES, LET'S PLAY!"
+
+[node name="BackMenuButton" type="Button" parent="UI/ConfirmScreen/Center/Panel/VBox" unique_id=965876802]
+custom_minimum_size = Vector2(200, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back to Menu"
+
+[node name="PauseScreen" type="Control" parent="UI" unique_id=1066023614]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UI/PauseScreen" unique_id=989287956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.12, 0.78)
+
+[node name="Center" type="CenterContainer" parent="UI/PauseScreen" unique_id=183754613]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/PauseScreen/Center" unique_id=265764137]
+custom_minimum_size = Vector2(380, 260)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/PauseScreen/Center/Panel" unique_id=870553163]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Heading" type="Label" parent="UI/PauseScreen/Center/Panel/VBox" unique_id=1559499552]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI/PauseScreen/Center/Panel/VBox" unique_id=161139325]
+custom_minimum_size = Vector2(220, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Resume"
+
+[node name="RestartPauseButton" type="Button" parent="UI/PauseScreen/Center/Panel/VBox" unique_id=696995446]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restart Level"
+
+[node name="MenuPauseButton" type="Button" parent="UI/PauseScreen/Center/Panel/VBox" unique_id=1554825548]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="GameOverScreen" type="Control" parent="UI" unique_id=842687138]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UI/GameOverScreen" unique_id=1622299330]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.04, 0.07, 0.88)
+
+[node name="Center" type="CenterContainer" parent="UI/GameOverScreen" unique_id=1509289999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/GameOverScreen/Center" unique_id=947359622]
+custom_minimum_size = Vector2(440, 310)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/GameOverScreen/Center/Panel" unique_id=994043653]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Heading" type="Label" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=1900760374]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Reason" type="Label" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=1197123892]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "You fell or hit an obstacle."
+horizontal_alignment = 1
+
+[node name="ScoreResultLabel" type="Label" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=538950684]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Score: 0  |  Coins: 0"
+horizontal_alignment = 1
+
+[node name="BestResultLabel" type="Label" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=1868143968]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Session Best: 0"
+horizontal_alignment = 1
+
+[node name="Prompt" type="Label" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=835438125]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Retry?"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=407191118]
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="UI/GameOverScreen/Center/Panel/VBox" unique_id=1862764825]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="VictoryScreen" type="Control" parent="UI" unique_id=1645817471]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UI/VictoryScreen" unique_id=1907089165]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.16, 0.1, 0.88)
+
+[node name="Center" type="CenterContainer" parent="UI/VictoryScreen" unique_id=1261123405]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/VictoryScreen/Center" unique_id=1123396033]
+custom_minimum_size = Vector2(460, 320)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/VictoryScreen/Center/Panel" unique_id=1035235036]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Heading" type="Label" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=1207960647]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "YOU WIN!"
+horizontal_alignment = 1
+
+[node name="Subtext" type="Label" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=928225596]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "You reached the finish!"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=465618445]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="FinalCoinsLabel" type="Label" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=432623679]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Coins Collected: 0"
+horizontal_alignment = 1
+
+[node name="BestResultLabel" type="Label" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=108749560]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Session Best Score: 0"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=1064949385]
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "PLAY AGAIN"
+
+[node name="MenuButton" type="Button" parent="UI/VictoryScreen/Center/Panel/VBox" unique_id=885070948]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
